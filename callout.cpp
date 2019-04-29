@@ -79,7 +79,7 @@ void Callout::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     }
 }
 
-void Callout::setText(const QString &text)
+void Callout::setText(const QString text)
 {
     m_text = text;
     QFontMetrics metrics(m_font);

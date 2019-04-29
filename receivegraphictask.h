@@ -1,5 +1,5 @@
-#ifndef GRAPHICDRAWERTASK_H
-#define GRAPHICDRAWERTASK_H
+#ifndef RECEIVEGRAPHICTASK_H
+#define RECEIVEGRAPHICTASK_H
 
 #include <QObject>
 #include <QtCharts>
@@ -7,13 +7,13 @@
 
 extern QString DATABASE_PATH;
 
-class GraphicDrawerTask : public QObject
+class ReceiveGraphicTask : public QObject
 {
     Q_OBJECT
 public:
-    explicit GraphicDrawerTask(QObject *parent = 0);
-    GraphicDrawerTask(int dtuId, QString type);
-    ~GraphicDrawerTask() {dao.closeConnection(dbName);}
+    explicit ReceiveGraphicTask(QObject *parent = 0);
+    ReceiveGraphicTask(int dtuId, QString type);
+    ~ReceiveGraphicTask() {dao.closeConnection(dbName);}
 public slots:
     void doWork();
 signals:
@@ -31,4 +31,4 @@ private:
     bool firstIteration{true};
 };
 
-#endif // GRAPHICDRAWERTASK_H
+#endif // RECEIVEGRAPHICTASK_H

@@ -22,7 +22,7 @@ protected:
 private:
     bool leftClick{false};
     QPoint mousePos;
-    Callout *m_tooltip;
+    Callout *m_tooltip = nullptr;
     QList<QPair<double, QString> > timeMarksCallout;
 };
 

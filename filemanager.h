@@ -15,7 +15,6 @@ signals:
 
 public:
     FileManager();
-    ~FileManager() {delete this;}
     bool correctZetLabFiles(QString path, QLabel *zetLabCheklabel, QLabel *errorZetLablabel);
     bool correctFileType(QString path, QString type, QLabel *cheklabel, QLabel *errorLabel);
     bool correctResultFiles(QString path, QString type, QLabel *cheklabel, QLabel *errorLabel);

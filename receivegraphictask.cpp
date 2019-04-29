@@ -1,17 +1,17 @@
-#include "graphicdrawertask.h"
+#include "receivegraphictask.h"
 
-GraphicDrawerTask::GraphicDrawerTask(QObject *parent) : QObject(parent)
+ReceiveGraphicTask::ReceiveGraphicTask(QObject *parent) : QObject(parent)
 {
 
 }
 
-GraphicDrawerTask::GraphicDrawerTask(int dtuId, QString type)
+ReceiveGraphicTask::ReceiveGraphicTask(int dtuId, QString type)
 {
     this->dtuId = dtuId;
     this->type = type;
 }
 
-void GraphicDrawerTask::doWork() {
+void ReceiveGraphicTask::doWork() {
     if(dao.connectionToDatabase(dbName, "thread")){
         QVector<QPair<double, double>> ser;
         if(getSeries(ser, type)) {
@@ -31,13 +31,13 @@ void GraphicDrawerTask::doWork() {
     emit finished();
 }
 
-double GraphicDrawerTask::getDistance(QPair<double, double> start, QPair<double, double> end, QPair<double, double> point) {
+double ReceiveGraphicTask::getDistance(QPair<double, double> start, QPair<double, double> end, QPair<double, double> point) {
     return ((abs((end.second - start.second)*point.first - (end.first - start.first)*point.second
                  + end.first*start.second - end.second*start.first))/
             (sqrt(pow((end.second-start.second),2) + pow((end.first-start.first),2))));
 }
 
-void GraphicDrawerTask::simplify(int start, int end, QVector<QPair<double, double> > &ser, QList<int> &result) {
+void ReceiveGraphicTask::simplify(int start, int end, QVector<QPair<double, double> > &ser, QList<int> &result) {
     if(start+1 == end) {
         return;
     }
@@ -60,7 +60,7 @@ void GraphicDrawerTask::simplify(int start, int end, QVector<QPair<double, doubl
     }
 }
 
-QLineSeries *GraphicDrawerTask::RamerDouglasPeuckerAlgorithm(QVector<QPair<double, double>> &ser) {
+QLineSeries *ReceiveGraphicTask::RamerDouglasPeuckerAlgorithm(QVector<QPair<double, double>> &ser) {
     QLineSeries *resultSeries = new QLineSeries();
     QList<int> result;
     result.append(0);
@@ -73,7 +73,7 @@ QLineSeries *GraphicDrawerTask::RamerDouglasPeuckerAlgorithm(QVector<QPair<doubl
     return resultSeries;
 }
 
-bool GraphicDrawerTask::getSeries(QVector<QPair<double, double> > &ser, QString type) {
+bool ReceiveGraphicTask::getSeries(QVector<QPair<double, double> > &ser, QString type) {
 
     QString str = dao.getDtuFilePath(dtuId, type);
     if(QFile::exists(str)) {

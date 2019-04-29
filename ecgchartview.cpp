@@ -139,7 +139,7 @@ void ECGChartView::tooltip(QPointF point, bool state) {
         }
     }
 
-    if (m_tooltip == 0)
+    if (m_tooltip == nullptr)
         m_tooltip = new Callout(this->chart());
 
     if (state) {

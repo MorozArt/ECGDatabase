@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "open.h"
-#include "graphicdrawertask.h"
+#include "receivegraphictask.h"
 #include "allresults.h"
 #include "showresult.h"
 #include "addfile.h"
@@ -156,37 +156,37 @@ void MainWindow::recieveGraphicData(QLineSeries *series) {
 void MainWindow::on_LF1Button_clicked()
 {
     ui->LF1RadioButton->setChecked(true);
-    startGraphicTask("LF1");
+    startReceiveGraphicTask("LF1");
 }
 
 void MainWindow::on_LF2Button_clicked()
 {
     ui->LF2RadioButton->setChecked(true);
-    startGraphicTask("LF2");
+    startReceiveGraphicTask("LF2");
 }
 
 void MainWindow::on_LF3Button_clicked()
 {
     ui->LF3RadioButton->setChecked(true);
-    startGraphicTask("LF3");
+    startReceiveGraphicTask("LF3");
 }
 
 void MainWindow::on_HF1Button_clicked()
 {
     ui->HF1RadioButton->setChecked(true);
-    startGraphicTask("HF1");
+    startReceiveGraphicTask("HF1");
 }
 
 void MainWindow::on_HF2Button_clicked()
 {
     ui->HF2RadioButton->setChecked(true);
-    startGraphicTask("HF2");
+    startReceiveGraphicTask("HF2");
 }
 
 void MainWindow::on_HF3Button_clicked()
 {
     ui->HF3RadioButton->setChecked(true);
-    startGraphicTask("HF3");
+    startReceiveGraphicTask("HF3");
 }
 
 void MainWindow::graphicButtonLock() {
@@ -207,20 +207,23 @@ void MainWindow::graphicButtonUnlock() {
     ui->LF3Button->setEnabled(true);
 }
 
-void MainWindow::startGraphicTask(QString type) {
+void MainWindow::startReceiveGraphicTask(QString type) {
     if(currentSignal.getDtuId() >= 0) {
-        GraphicDrawerTask* task = new GraphicDrawerTask(currentSignal.getDtuId(), type);
+        ReceiveGraphicTask* task = new ReceiveGraphicTask(currentSignal.getDtuId(), type);
 
         connect(task, SIGNAL(send(QLineSeries*)), this, SLOT(recieveGraphicData(QLineSeries*)));
         connect(task,SIGNAL(finished()), task,SLOT(deleteLater()));
-        QtConcurrent::run(task,&GraphicDrawerTask::doWork);
+        QtConcurrent::run(task,&ReceiveGraphicTask::doWork);
         graphicButtonLock();
+    } else {
+        MessageBoxCreator::showMessageBoxNoSelectedFiles(this);
     }
 }
 
 void MainWindow::on_zoomInButton_clicked()
 {
-    ui->graphicsView->chart()->zoom(1+zoomValue);
+    if(ui->graphicsView->chart() != nullptr)
+        ui->graphicsView->chart()->zoom(1+zoomValue);
 }
 
 void MainWindow::on_zoomOutButton_clicked()
@@ -250,16 +253,18 @@ void MainWindow::on_scrollDawnButton_clicked()
 
 void MainWindow::on_scaleInButton_clicked()
 {
-    axisXRange += axisXRangeScale;
-    axisXTimeRange += axisXTimeRangeScale;
-    graphicsDrawer.getChart()->axes(Qt::Horizontal).first()->setRange(0, axisXRange);
-    graphicsDrawer.getChart()->axes(Qt::Horizontal).at(1)->setRange(0, axisXTimeRange);
-    graphicsDrawer.getChart()->axes(Qt::Horizontal).last()->setRange(globalTimeStart, axisXTimeRange+globalTimeStart);
+    if(graphicsDrawer.getChart() != nullptr) {
+        axisXRange += axisXRangeScale;
+        axisXTimeRange += axisXTimeRangeScale;
+        graphicsDrawer.getChart()->axes(Qt::Horizontal).first()->setRange(0, axisXRange);
+        graphicsDrawer.getChart()->axes(Qt::Horizontal).at(1)->setRange(0, axisXTimeRange);
+        graphicsDrawer.getChart()->axes(Qt::Horizontal).last()->setRange(globalTimeStart, axisXTimeRange+globalTimeStart);
+    }
 }
 
 void MainWindow::on_scaleOutButton_clicked()
 {
-    if(axisXRange > (axisXRangeScale+0.0001)) {
+    if(axisXRange > (axisXRangeScale+0.0001) && graphicsDrawer.getChart() != nullptr) {
         axisXRange -= axisXRangeScale;
         axisXTimeRange -= axisXTimeRangeScale;
         graphicsDrawer.getChart()->axes(Qt::Horizontal).first()->setRange(0, axisXRange);
@@ -272,6 +277,8 @@ void MainWindow::on_waveformButton_clicked()
 {
     if(currentSignal.getRatId() != -1) {
         showResult("waveform"+QString::number(getChannel()));
+    } else {
+        MessageBoxCreator::showMessageBoxNoSelectedFiles(this);
     }
 }
 
@@ -279,6 +286,8 @@ void MainWindow::on_waveletButton_clicked()
 {
     if(currentSignal.getRatId() != -1) {
         showResult("wavelet");
+    } else {
+        MessageBoxCreator::showMessageBoxNoSelectedFiles(this);
     }
 }
 
@@ -286,6 +295,8 @@ void MainWindow::on_histogrammButton_clicked()
 {
     if(currentSignal.getRatId() != -1) {
         showResult("histogram");
+    } else {
+        MessageBoxCreator::showMessageBoxNoSelectedFiles(this);
     }
 }
 
@@ -293,6 +304,8 @@ void MainWindow::on_spectrumButton_clicked()
 {
     if(currentSignal.getRatId() != -1) {
         showResult("spectrum");
+    } else {
+        MessageBoxCreator::showMessageBoxNoSelectedFiles(this);
     }
 }
 

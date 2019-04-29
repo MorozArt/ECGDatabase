@@ -32,14 +32,14 @@ SOURCES += \
     currentsignal.cpp \
     ecgchartview.cpp \
     ecggraphicdrawer.cpp \
-    graphicdrawertask.cpp \
     callout.cpp \
     addfile.cpp \
     showresult.cpp \
     filemanager.cpp \
     referencemanager.cpp \
     copyprogress.cpp \
-    messageboxcreator.cpp
+    messageboxcreator.cpp \
+    receivegraphictask.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,14 +48,14 @@ HEADERS += \
     currentsignal.h \
     ecgchartview.h \
     ecggraphicdrawer.h \
-    graphicdrawertask.h \
     callout.h \
     addfile.h \
     showresult.h \
     filemanager.h \
     referencemanager.h \
     copyprogress.h \
-    messageboxcreator.h
+    messageboxcreator.h \
+    receivegraphictask.h
 
 FORMS += \
         mainwindow.ui \

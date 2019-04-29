@@ -30,12 +30,39 @@ double castSecondsToMinutes(int seconds) {
     return minutes;
 }
 
+QString getWaveformTitle(QString type) {
+    int channel = type.right(1).toInt();
+    QString title = "Осциллограмма ";
+    switch (channel) {
+    case 1:
+        title += "НЧ1";
+        break;
+    case 2:
+        title += "НЧ2";
+        break;
+    case 3:
+        title += "НЧ3";
+        break;
+    case 4:
+        title += "ВЧ1";
+        break;
+    case 5:
+        title += "ВЧ2";
+        break;
+    case 6:
+        title += "ВЧ3";
+        break;
+    }
+
+    return title;
+}
+
 void ShowResult::recieveResultType(QString type, int id) {
     this->type = type;
     if(type == "spectrum") this->setWindowTitle("Спектр");
     if(type == "wavelet") this->setWindowTitle("Вейвлет");
     if(type == "histogram") this->setWindowTitle("Гистограмма");
-    if(type.contains("waveform")) this->setWindowTitle("Осциллограмма");
+    if(type.contains("waveform")) this->setWindowTitle(getWaveformTitle(type));
     if(id >= 0) {
         QString dirPath{""};
         if(type.contains("waveform")) {

@@ -77,7 +77,7 @@ private slots:
 private:
     void graphicButtonLock();
     void graphicButtonUnlock();
-    void startGraphicTask(QString type);
+    void startReceiveGraphicTask(QString type);
     void resultImageView(QString type);
     void showResult(QString type);
     int getChannel();
