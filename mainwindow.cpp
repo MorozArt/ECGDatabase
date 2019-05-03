@@ -10,6 +10,7 @@
 #include "filemanager.h"
 #include "copyprogress.h"
 #include "messageboxcreator.h"
+#include "settings.h"
 
 extern QString DATABASE_PATH;
 extern QString IMAGES_FORMAT;
@@ -53,6 +54,12 @@ void MainWindow::on_add_action_triggered()
 {
     AddFile *af = new AddFile(this);
     af->exec();
+}
+
+void MainWindow::on_settings_action_triggered()
+{
+    Settings *settings = new Settings(this);
+    settings->exec();
 }
 
 void MainWindow::on_ZEtLab_action_triggered()
@@ -222,8 +229,7 @@ void MainWindow::startReceiveGraphicTask(QString type) {
 
 void MainWindow::on_zoomInButton_clicked()
 {
-    if(ui->graphicsView->chart() != nullptr)
-        ui->graphicsView->chart()->zoom(1+zoomValue);
+    ui->graphicsView->chart()->zoom(1+zoomValue);
 }
 
 void MainWindow::on_zoomOutButton_clicked()

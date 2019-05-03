@@ -13,8 +13,7 @@ bool DAO::connectionToDatabase(QString dbName) {
     mainDatabase.setDatabaseName(dbName);
     if (mainDatabase.open()){
         return true;
-    }
-    else{
+    } else {
         return false;
     }
 }
@@ -24,8 +23,7 @@ bool DAO::connectionToDatabase(QString dbName, QString connectionName) {
     mainDatabase.setDatabaseName(dbName);
     if (mainDatabase.open()){
         return true;
-    }
-    else{
+    } else {
         return false;
     }
 }

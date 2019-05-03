@@ -5,6 +5,7 @@ QString DATABASE_PATH = "/data/ECGMainDatabase.sqlite";
 QString IMAGES_FORMAT = "png|jpg|jpeg";
 QString ERROR_TITLE = "Ошибка!";
 QString READY_TITLE = "Готово!";
+QString TEMP_FILE = "../temp.xml";
 int scrollValue{10};
 int scrollMouseValue{4};
 int axisXRange{600};

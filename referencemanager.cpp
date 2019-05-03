@@ -2,17 +2,20 @@
 #include <QtXml>
 #include "referencemanager.h"
 
+extern QString TEMP_FILE;
+
+QFile ReferenceManager::tempFile;
+
 ReferenceManager::ReferenceManager()
 {
 
 }
 
 bool ReferenceManager::prepareFile() {
-    QFile file("../temp.xml");
-    if(file.exists()) {
-        file.open(QIODevice::WriteOnly | QIODevice::Truncate);
-        file.write("");
-        file.close ();
+    tempFile.setFileName(TEMP_FILE);
+    if(tempFile.exists()) {
+        tempFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
+        tempFile.write("");
         return true;
     } else {
         return false;
@@ -33,17 +36,11 @@ bool ReferenceManager::writeRef(QList<QPair<QString, QString> > list) {
                 domElement.appendChild(itemElement);
             }
 
-            QFile file("../temp.xml");
-            if(file.open(QIODevice::WriteOnly)) {
-                QTextStream ts(&file);
-                ts.setCodec(QTextCodec::codecForName("UTF-8"));
-                ts << doc.toString();
-                file.close();
-                return true;
-            } else {
-                return false;
-            }
-
+            QTextStream ts(&tempFile);
+            ts.setCodec(QTextCodec::codecForName("UTF-8"));
+            ts << doc.toString();
+            tempFile.close();
+            return true;
     } else {
         return false;
     }

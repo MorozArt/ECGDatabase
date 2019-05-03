@@ -74,6 +74,8 @@ private slots:
 
     void on_getAll_action_triggered();
 
+    void on_settings_action_triggered();
+
 private:
     void graphicButtonLock();
     void graphicButtonUnlock();

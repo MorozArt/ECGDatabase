@@ -39,7 +39,8 @@ SOURCES += \
     referencemanager.cpp \
     copyprogress.cpp \
     messageboxcreator.cpp \
-    receivegraphictask.cpp
+    receivegraphictask.cpp \
+    settings.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +56,8 @@ HEADERS += \
     referencemanager.h \
     copyprogress.h \
     messageboxcreator.h \
-    receivegraphictask.h
+    receivegraphictask.h \
+    settings.h
 
 FORMS += \
         mainwindow.ui \
@@ -63,7 +65,8 @@ FORMS += \
     allresults.ui \
     addfile.ui \
     showresult.ui \
-    copyprogress.ui
+    copyprogress.ui \
+    settings.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
