@@ -1,10 +1,8 @@
 #include <QFileDialog>
 #include "addfile.h"
+#include "globalvariable.h"
 #include "ui_addfile.h"
 #include "messageboxcreator.h"
-
-extern QString DATABASE_PATH;
-extern QString ERROR_TITLE;
 
 AddFile::AddFile(QWidget *parent) :
     QDialog(parent),

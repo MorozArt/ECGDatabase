@@ -1,7 +1,6 @@
 #include <QIcon>
 #include "messageboxcreator.h"
-
-extern QString ERROR_TITLE;
+#include "globalvariable.h"
 
 MessageBoxCreator::MessageBoxCreator()
 {

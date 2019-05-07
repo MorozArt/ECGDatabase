@@ -1,6 +1,7 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QMovie>
 #include "mainwindow.h"
+#include "globalvariable.h"
 #include "ui_mainwindow.h"
 #include "open.h"
 #include "receivegraphictask.h"
@@ -11,19 +12,6 @@
 #include "copyprogress.h"
 #include "messageboxcreator.h"
 #include "settings.h"
-
-extern QString DATABASE_PATH;
-extern QString IMAGES_FORMAT;
-extern QString ERROR_TITLE;
-extern QString READY_TITLE;
-extern int scrollValue;
-extern int scrollMouseValue;
-extern double zoomValue;
-extern int axisXRangeScale;
-extern int axisXRange;
-extern int axisXTimeRange;
-extern int axisXTimeRangeScale;
-extern double globalTimeStart;
 
 using namespace QtCharts;
 

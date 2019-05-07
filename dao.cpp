@@ -1,7 +1,5 @@
 #include "dao.h"
-
-extern double globalTimeStart;
-extern QString IMAGES_FORMAT;
+#include "globalvariable.h"
 
 DAO::DAO()
 {

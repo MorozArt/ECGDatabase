@@ -4,10 +4,7 @@
 #include "ui_showresult.h"
 #include "referencemanager.h"
 #include "messageboxcreator.h"
-
-extern QString ERROR_TITLE;
-extern QString READY_TITLE;
-extern QString IMAGES_FORMAT;
+#include "globalvariable.h"
 
 ShowResult::ShowResult(QWidget *parent) :
     QDialog(parent),

@@ -341,7 +341,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="threeDButton">
        <property name="text">
         <string>PushButton</string>
        </property>

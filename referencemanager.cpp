@@ -2,8 +2,6 @@
 #include <QtXml>
 #include "referencemanager.h"
 
-extern QString TEMP_FILE;
-
 QFile ReferenceManager::tempFile;
 
 ReferenceManager::ReferenceManager()
@@ -12,7 +10,8 @@ ReferenceManager::ReferenceManager()
 }
 
 bool ReferenceManager::prepareFile() {
-    tempFile.setFileName(TEMP_FILE);
+    QSettings settings("database.conf", QSettings::IniFormat);
+    setTempFile(settings.value("TempFilePath", "").toString());
     if(tempFile.exists()) {
         tempFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
         tempFile.write("");

@@ -1,8 +1,5 @@
 #include "ecggraphicdrawer.h"
-
-extern int axisXRange;
-extern int axisXTimeRange;
-extern double globalTimeStart;
+#include "globalvariable.h"
 
 ECGGraphicDrawer::ECGGraphicDrawer()
 {

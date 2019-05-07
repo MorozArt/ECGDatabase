@@ -2,10 +2,7 @@
 #include "open.h"
 #include "ui_open.h"
 #include "messageboxcreator.h"
-
-extern QString DATABASE_PATH;
-extern QString ERROR_TITLE;
-extern QString READY_TITLE;
+#include "globalvariable.h"
 
 Open::Open(QWidget *parent) :
     QDialog(parent),

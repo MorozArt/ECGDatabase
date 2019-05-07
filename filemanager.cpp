@@ -2,13 +2,11 @@
 #include <QApplication>
 #include <QDebug>
 #include "filemanager.h"
-
-extern QString DATABASE_PATH;
-extern QString IMAGES_FORMAT;
+#include "globalvariable.h"
 
 FileManager::FileManager()
 {
-    dao.connectionToDatabase(qApp->applicationDirPath()+DATABASE_PATH, "addFile");
+    dao.connectionToDatabase(qApp->applicationDirPath()+DATABASE_PATH, "fileManager");
 }
 
 bool FileManager::correctZetLabFiles(QString path, QLabel *zetLabCheklabel, QLabel *errorZetLablabel) {

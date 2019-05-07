@@ -43,6 +43,7 @@ SOURCES += \
     settings.cpp
 
 HEADERS += \
+    globalvariable.h \
         mainwindow.h \
     dao.h \
     open.h \

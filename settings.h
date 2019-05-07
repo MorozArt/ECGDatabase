@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include <QDialog>
+#include <QSettings>
 #include "filemanager.h"
 
 namespace Ui {
@@ -19,11 +20,17 @@ public:
 private slots:
     void on_tempFileButton_clicked();
 
+    void on_cancelButton_clicked();
+
+    void on_acceptButton_clicked();
+
+    void on_resetTempFileButton_clicked();
+
 private:
-    //void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event);
     Ui::Settings *ui;
     FileManager fileManager;
-    bool tempFileCorrect;
+    bool tempFileCorrect{false};
 };
 
 #endif // SETTINGS_H

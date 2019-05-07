@@ -1,13 +1,5 @@
 #include "ecgchartview.h"
-
-extern int scrollValue;
-extern int scrollMouseValue;
-extern double zoomValue;
-extern int axisXRangeScale;
-extern int axisXRange;
-extern int axisXTimeRange;
-extern int axisXTimeRangeScale;
-extern double globalTimeStart;
+#include "globalvariable.h"
 
 ECGChartView::ECGChartView(QWidget *parent) : QChartView(parent)
 {
