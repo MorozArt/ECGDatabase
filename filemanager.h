@@ -17,7 +17,8 @@ public:
     FileManager();
     bool correctZetLabFiles(QString path, QLabel *zetLabCheklabel, QLabel *errorZetLablabel);
     bool correctFileType(QString path, QString type, QLabel *cheklabel, QLabel *errorLabel);
-    bool correctResultFiles(QString path, QString type, QLabel *cheklabel, QLabel *errorLabel);
+    bool correctResult(QString path, QString type, QLabel *cheklabel, QLabel *errorLabel);
+    bool correctResultFiles(QString path, QString channel, QString type, QLabel *cheklabel, QLabel *errorLabel);
     QString createDir(QString ratNum, QString ratDesc);
     bool zetLabFilesMove(QString dirPath, QString zetLabFilesPath, int ratId);
     bool fileMove(int id, QString filePath, QString dirPath, QString type);

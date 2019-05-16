@@ -23,7 +23,7 @@ public:
     ~ShowResult();
 
 public slots:
-    void recieveResultType(QString type, int id);
+    void recieveResultType(QString type, int id, int channel);
 
 private slots:
     void on_closeButton_clicked();
@@ -35,9 +35,11 @@ private slots:
 private:
     void closeEvent(QCloseEvent *event);
     void sortItems();
+    QString getChannel(int channel);
     Ui::ShowResult *ui;
     DAO dao;
     QString type;
+    QString channel;
     QList<item> items;
     QList< QPair<QCheckBox*, QString> > checkedItems;
 };

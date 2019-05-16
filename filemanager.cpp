@@ -88,20 +88,41 @@ bool FileManager::correctFileType(QString path, QString type, QLabel *cheklabel,
     return result;
 }
 
-bool FileManager::correctResultFiles(QString path, QString type, QLabel *cheklabel, QLabel *errorLabel) {
-    bool result;
-
+bool FileManager::correctResult(QString path, QString type, QLabel *cheklabel, QLabel *errorLabel) {
+    bool result{true};
     QDir dir(path);
+    QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    QFileInfoList fiList = dir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries);
+    if(list.size() != 6 || fiList.size() != 6) {
+        cheklabel->setPixmap(QPixmap(":/images/false.png"));
+        errorLabel->setText("Неверное количество папок или присутствуют лишние файлы!");
+        return false;
+    } else {
+        cheklabel->setPixmap(QPixmap(":/images/NoRequired.png"));
+        errorLabel->setText("");
+        for(int i=0;i<6;++i) {
+            if(!correctResultFiles(path, list.at(i), type, cheklabel, errorLabel)) result = false;
+        }
+
+        if(result) {
+            cheklabel->setPixmap(QPixmap(":/images/true.png"));
+            errorLabel->setText("");
+        } else errorLabel->setText("Ошибка!");
+    }
+
+    return result;
+}
+
+bool FileManager::correctResultFiles(QString path, QString channel, QString type, QLabel *cheklabel, QLabel *errorLabel) {
+    bool result{false};
+
+    QDir dir(path+"/"+channel);
     QStringList list = dir.entryList(QDir::Files);
-    QString excessFiles{""};
+    QString excessFiles{channel+":\n"};
+    QString toolTipText = errorLabel->toolTip();
     int filesCount{0};
     bool correct{true};
-    QRegExp exp;
-    if(type == "waveform") {
-        exp.setPattern("^("+type+")\\s(1|2|3|4|5|6)\\.("+IMAGES_FORMAT+")$");
-    } else {
-        exp.setPattern("^("+type+")\\s\\d+\\-\\d+\\.("+IMAGES_FORMAT+"|txt)$");
-    }
+    QRegExp exp("^("+type+")\\s\\d+\\-\\d+\\.("+IMAGES_FORMAT+"|txt)$");
 
     if(!list.isEmpty()) {
         for(int i=0;i<list.size();++i) {
@@ -113,21 +134,18 @@ bool FileManager::correctResultFiles(QString path, QString type, QLabel *cheklab
 
         if(correct) {
             result = true;
-            cheklabel->setPixmap(QPixmap(":/images/true.png"));
-            errorLabel->setText("");
-            errorLabel->setToolTip("");
         } else {
             result = false;
             cheklabel->setPixmap(QPixmap(":/images/false.png"));
-            errorLabel->setText(filesCount>0 ? "Внимание! В папке присутствуют лишние файлы!" :
-                                                          "В данной папке отсутствуют требуемые файлы!");
-            errorLabel->setToolTip(filesCount>0 ? excessFiles : "");
+            toolTipText.append(filesCount>0 ? "Лишние файлы в "+excessFiles :
+                                              "Отсутствуют требуемые файлы в "+channel+"\n");
+            errorLabel->setToolTip(toolTipText);
         }
     } else {
         result = false;
         cheklabel->setPixmap(QPixmap(":/images/false.png"));
-        errorLabel->setText("В данной папке отсутствуют требуемые файлы!");
-        errorLabel->setToolTip("");
+        toolTipText.append("Отсутствуют требуемые файлы в "+channel+"\n");
+        errorLabel->setToolTip(toolTipText);
     }
 
     return result;
@@ -214,6 +232,7 @@ bool FileManager::fileMove(int id, QString filePath, QString dirPath, QString ty
 
 bool FileManager::resultDirMove(int id, QString resultDirPath, QString dirPath, QString type) {
     bool result{false};
+
     QDir resultDir(dirPath+"/result");
     if(!resultDir.exists()) {
         resultDir.mkdir(dirPath+"/result");
@@ -257,9 +276,6 @@ bool FileManager::resultDirMove(int id, QString resultDirPath, QString dirPath, 
 }
 
 bool FileManager::runCopyTask(QString source, QString dest) {
-    /*CopyProgress *prog = new CopyProgress();
-    connect(this, SIGNAL(copyFinished()), prog, SLOT(copyFinish()));
-    prog->exec();*/
     copyDir(source, dest);
     emit copyFinished();
 }

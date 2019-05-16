@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>571</width>
-    <height>370</height>
+    <height>389</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>571</width>
-    <height>370</height>
+    <height>389</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>571</width>
-    <height>370</height>
+    <height>389</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -103,24 +103,11 @@
     <string>Zetlab файлы:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="resultLabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>110</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Результаты обработки:</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="waveformLabel">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>140</y>
+     <x>30</x>
+     <y>110</y>
      <width>91</width>
      <height>21</height>
     </rect>
@@ -139,21 +126,11 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="resultLineEdit">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>110</y>
-     <width>261</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="waveformLineEdit">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>140</y>
+     <x>120</x>
+     <y>110</y>
      <width>241</width>
      <height>20</height>
     </rect>
@@ -162,8 +139,8 @@
   <widget class="QLabel" name="waveletLabel">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>180</y>
+     <x>30</x>
+     <y>150</y>
      <width>91</width>
      <height>21</height>
     </rect>
@@ -175,8 +152,8 @@
   <widget class="QLineEdit" name="waveletLineEdit">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>180</y>
+     <x>120</x>
+     <y>150</y>
      <width>241</width>
      <height>20</height>
     </rect>
@@ -195,24 +172,11 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="resultButton">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>110</y>
-     <width>31</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>...</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="waveformButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>140</y>
+     <x>370</x>
+     <y>110</y>
      <width>31</width>
      <height>23</height>
     </rect>
@@ -224,8 +188,8 @@
   <widget class="QPushButton" name="waveletButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>180</y>
+     <x>370</x>
+     <y>150</y>
      <width>31</width>
      <height>23</height>
     </rect>
@@ -237,8 +201,8 @@
   <widget class="QPushButton" name="addPushButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>340</y>
+     <x>10</x>
+     <y>360</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -250,8 +214,8 @@
   <widget class="QPushButton" name="cancelPushButton">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>340</y>
+     <x>90</x>
+     <y>360</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -273,8 +237,8 @@
   <widget class="QPushButton" name="histogramButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>220</y>
+     <x>370</x>
+     <y>190</y>
      <width>31</width>
      <height>23</height>
     </rect>
@@ -286,8 +250,8 @@
   <widget class="QLabel" name="histogramLabel">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>220</y>
+     <x>40</x>
+     <y>190</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -299,8 +263,8 @@
   <widget class="QLineEdit" name="histogramLineEdit">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>220</y>
+     <x>120</x>
+     <y>190</y>
      <width>241</width>
      <height>20</height>
     </rect>
@@ -309,8 +273,8 @@
   <widget class="QLineEdit" name="spectrumLineEdit">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>260</y>
+     <x>120</x>
+     <y>230</y>
      <width>241</width>
      <height>20</height>
     </rect>
@@ -319,8 +283,8 @@
   <widget class="QLabel" name="spectrumLabel">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>260</y>
+     <x>70</x>
+     <y>230</y>
      <width>41</width>
      <height>21</height>
     </rect>
@@ -332,8 +296,8 @@
   <widget class="QPushButton" name="spectrumButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>260</y>
+     <x>370</x>
+     <y>230</y>
      <width>31</width>
      <height>23</height>
     </rect>
@@ -382,8 +346,8 @@
   <widget class="QPushButton" name="keyPointsButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>300</y>
+     <x>370</x>
+     <y>310</y>
      <width>31</width>
      <height>23</height>
     </rect>
@@ -395,8 +359,8 @@
   <widget class="QLabel" name="keyPointsLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>300</y>
+     <x>0</x>
+     <y>310</y>
      <width>111</width>
      <height>21</height>
     </rect>
@@ -408,8 +372,8 @@
   <widget class="QLineEdit" name="keyPointsLineEdit">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>300</y>
+     <x>120</x>
+     <y>310</y>
      <width>241</width>
      <height>20</height>
     </rect>
@@ -491,31 +455,12 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="resultChekLabel">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>110</y>
-     <width>21</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="res.qrc">:/images/NoRequired.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QLabel" name="errorWaveformLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>160</y>
-     <width>261</width>
+     <x>120</x>
+     <y>130</y>
+     <width>321</width>
      <height>16</height>
     </rect>
    </property>
@@ -523,14 +468,14 @@
     <string notr="true">color: rgb(255, 0, 0);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ошибка! Отсутствуют требуемые файлы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Неверное количество папок или присутствуют лишние файлы!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="waveformChekLabel">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>140</y>
+     <x>410</x>
+     <y>110</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -548,9 +493,9 @@
   <widget class="QLabel" name="errorWaveletLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>200</y>
-     <width>261</width>
+     <x>120</x>
+     <y>170</y>
+     <width>321</width>
      <height>16</height>
     </rect>
    </property>
@@ -558,14 +503,14 @@
     <string notr="true">color: rgb(255, 0, 0);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ошибка! Отсутствуют требуемые файлы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Неверное количество папок или присутствуют лишние файлы!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="waveletChekLabel">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>180</y>
+     <x>410</x>
+     <y>150</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -583,9 +528,9 @@
   <widget class="QLabel" name="errorHistogramLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>240</y>
-     <width>261</width>
+     <x>120</x>
+     <y>210</y>
+     <width>321</width>
      <height>16</height>
     </rect>
    </property>
@@ -593,14 +538,14 @@
     <string notr="true">color: rgb(255, 0, 0);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ошибка! Отсутствуют требуемые файлы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Неверное количество папок или присутствуют лишние файлы!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="histogramChekLabel">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>220</y>
+     <x>410</x>
+     <y>190</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -618,9 +563,9 @@
   <widget class="QLabel" name="errorSpectrumLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>280</y>
-     <width>261</width>
+     <x>120</x>
+     <y>250</y>
+     <width>321</width>
      <height>16</height>
     </rect>
    </property>
@@ -628,14 +573,14 @@
     <string notr="true">color: rgb(255, 0, 0);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ошибка! Отсутствуют требуемые файлы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Неверное количество папок или присутствуют лишние файлы!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="spectrumChekLabel">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>260</y>
+     <x>410</x>
+     <y>230</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -653,9 +598,9 @@
   <widget class="QLabel" name="errorKeyPointsLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>320</y>
-     <width>261</width>
+     <x>120</x>
+     <y>330</y>
+     <width>321</width>
      <height>16</height>
     </rect>
    </property>
@@ -663,14 +608,85 @@
     <string notr="true">color: rgb(255, 0, 0);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ошибка! Отсутствуют требуемые файлы&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Неверное количество папок или присутствуют лишние файлы!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="keyPointsChekLabel">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>300</y>
+     <x>410</x>
+     <y>310</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/NoRequired.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="keyPointsLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>270</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>3D картирование:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cartButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>270</y>
+     <width>31</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="errorCartLabel">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>290</y>
+     <width>321</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Неверное количество папок или присутствуют лишние файлы!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cartLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>270</y>
+     <width>241</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cartChekLabel">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>270</y>
      <width>21</width>
      <height>21</height>
     </rect>

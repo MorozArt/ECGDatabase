@@ -22,8 +22,8 @@ public:
     ~MainWindow();
 
 signals:
-    void sendResultType(QString type);
-    void sendResultType(QString type, int id);
+    //void sendResultType(QString type);
+    void sendResultType(QString type, int id, int channel);
 
 public slots:
     void recieveOpenData(int ratId);

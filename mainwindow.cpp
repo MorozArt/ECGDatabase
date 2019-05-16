@@ -270,7 +270,7 @@ void MainWindow::on_scaleOutButton_clicked()
 void MainWindow::on_waveformButton_clicked()
 {
     if(currentSignal.getRatId() != -1) {
-        showResult("waveform"+QString::number(getChannel()));
+        showResult("waveform");
     } else {
         MessageBoxCreator::showMessageBoxNoSelectedFiles(this);
     }
@@ -305,8 +305,8 @@ void MainWindow::on_spectrumButton_clicked()
 
 void MainWindow::showResult(QString type) {
     ShowResult *showResultView = new ShowResult(this);
-    connect(this, SIGNAL(sendResultType(QString, int)), showResultView, SLOT(recieveResultType(QString, int)));
-    emit sendResultType(type, currentSignal.getDtuId());
+    connect(this, SIGNAL(sendResultType(QString, int, int)), showResultView, SLOT(recieveResultType(QString, int, int)));
+    emit sendResultType(type, currentSignal.getResultId(), getChannel());
     showResultView->exec();
 }
 

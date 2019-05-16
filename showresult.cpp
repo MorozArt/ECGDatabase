@@ -27,46 +27,41 @@ double castSecondsToMinutes(int seconds) {
     return minutes;
 }
 
-QString getWaveformTitle(QString type) {
-    int channel = type.right(1).toInt();
-    QString title = "Осциллограмма ";
+QString ShowResult::getChannel(int channel) {
+    QString result{""};
     switch (channel) {
     case 1:
-        title += "НЧ1";
+        result = "НЧ1";
         break;
     case 2:
-        title += "НЧ2";
+        result = "НЧ2";
         break;
     case 3:
-        title += "НЧ3";
+        result = "НЧ3";
         break;
     case 4:
-        title += "ВЧ1";
+        result = "ВЧ1";
         break;
     case 5:
-        title += "ВЧ2";
+        result = "ВЧ2";
         break;
     case 6:
-        title += "ВЧ3";
+        result = "ВЧ3";
         break;
     }
 
-    return title;
+    return result;
 }
 
-void ShowResult::recieveResultType(QString type, int id) {
+void ShowResult::recieveResultType(QString type, int id, int channel) {
     this->type = type;
-    if(type == "spectrum") this->setWindowTitle("Спектр");
-    if(type == "wavelet") this->setWindowTitle("Вейвлет");
-    if(type == "histogram") this->setWindowTitle("Гистограмма");
-    if(type.contains("waveform")) this->setWindowTitle(getWaveformTitle(type));
+    this->channel = getChannel(channel);
+    if(type == "spectrum") this->setWindowTitle("Спектр "+ this->channel);
+    if(type == "wavelet") this->setWindowTitle("Вейвлет "+ this->channel);
+    if(type == "histogram") this->setWindowTitle("Гистограмма "+ this->channel);
+    if(type == "waveform") this->setWindowTitle("Осциллограмма "+ this->channel);
     if(id >= 0) {
-        QString dirPath{""};
-        if(type.contains("waveform")) {
-            dirPath = dao.getResult("waveform", id);
-        } else {
-            dirPath = dao.getResult(type, id);
-        }
+        QString dirPath = (dao.getResult(type, id)+"/"+this->channel);
         QDir dir(dirPath);
         QStringList list;
 

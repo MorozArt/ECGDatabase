@@ -18,6 +18,7 @@ AddFile::AddFile(QWidget *parent) :
     ui->errorWaveletLabel->setText("");
     ui->errorSpectrumLabel->setText("");
     ui->errorKeyPointsLabel->setText("");
+    ui->errorCartLabel->setText("");
 
     dao.connectionToDatabase(qApp->applicationDirPath()+DATABASE_PATH, "addFile");
     researchInstitutes = dao.getResearchInstitutes();
@@ -163,13 +164,13 @@ void AddFile::on_waveformButton_clicked()
 {
     QString path = QFileDialog::getExistingDirectory(this,"Выбор директории","",QFileDialog::ShowDirsOnly);
     ui->waveformLineEdit->setText(path);
-    waveformCorrect = fileManager.correctResultFiles(path, "waveform", ui->waveformChekLabel, ui->errorWaveformLabel);
+    waveformCorrect = fileManager.correctResult(path, "waveform", ui->waveformChekLabel, ui->errorWaveformLabel);
 }
 
 void AddFile::on_waveformLineEdit_editingFinished()
 {
     if(!ui->waveformLineEdit->text().isEmpty()) {
-        waveformCorrect = fileManager.correctResultFiles(ui->waveformLineEdit->text(),
+        waveformCorrect = fileManager.correctResult(ui->waveformLineEdit->text(),
                                                       "waveform", ui->waveformChekLabel, ui->errorWaveformLabel);
     } else {
         ui->waveformChekLabel->setPixmap(QPixmap(":/images/NoRequired.png"));
@@ -183,13 +184,13 @@ void AddFile::on_waveletButton_clicked()
 {
     QString path = QFileDialog::getExistingDirectory(this,"Выбор директории","",QFileDialog::ShowDirsOnly);
     ui->waveletLineEdit->setText(path);
-    waveletCorrect = fileManager.correctResultFiles(path, "wavelet", ui->waveletChekLabel, ui->errorWaveletLabel);
+    waveletCorrect = fileManager.correctResult(path, "wavelet", ui->waveletChekLabel, ui->errorWaveletLabel);
 }
 
 void AddFile::on_waveletLineEdit_editingFinished()
 {
     if(!ui->waveletLineEdit->text().isEmpty()) {
-        waveletCorrect = fileManager.correctResultFiles(ui->waveletLineEdit->text(), "wavelet",
+        waveletCorrect = fileManager.correctResult(ui->waveletLineEdit->text(), "wavelet",
                                                         ui->waveletChekLabel, ui->errorWaveletLabel);
     } else {
         ui->waveletChekLabel->setPixmap(QPixmap(":/images/NoRequired.png"));
@@ -203,13 +204,13 @@ void AddFile::on_histogramButton_clicked()
 {
     QString path = QFileDialog::getExistingDirectory(this,"Выбор директории","",QFileDialog::ShowDirsOnly);
     ui->histogramLineEdit->setText(path);
-    histogramCorrect = fileManager.correctResultFiles(path, "histogram", ui->histogramChekLabel, ui->errorHistogramLabel);
+    histogramCorrect = fileManager.correctResult(path, "histogram", ui->histogramChekLabel, ui->errorHistogramLabel);
 }
 
 void AddFile::on_histogramLineEdit_editingFinished()
 {
     if(!ui->histogramLineEdit->text().isEmpty()) {
-        histogramCorrect = fileManager.correctResultFiles(ui->histogramLineEdit->text(), "histogram",
+        histogramCorrect = fileManager.correctResult(ui->histogramLineEdit->text(), "histogram",
                                                           ui->histogramChekLabel, ui->errorHistogramLabel);
     } else {
         ui->histogramChekLabel->setPixmap(QPixmap(":/images/NoRequired.png"));
@@ -223,13 +224,13 @@ void AddFile::on_spectrumButton_clicked()
 {
     QString path = QFileDialog::getExistingDirectory(this,"Выбор директории","",QFileDialog::ShowDirsOnly);
     ui->spectrumLineEdit->setText(path);
-    spectrumCorrect = fileManager.correctResultFiles(path, "spectrum", ui->spectrumChekLabel, ui->errorSpectrumLabel);
+    spectrumCorrect = fileManager.correctResult(path, "spectrum", ui->spectrumChekLabel, ui->errorSpectrumLabel);
 }
 
 void AddFile::on_spectrumLineEdit_editingFinished()
 {
     if(!ui->spectrumLineEdit->text().isEmpty()) {
-        spectrumCorrect = fileManager.correctResultFiles(ui->spectrumLineEdit->text(), "spectrum",
+        spectrumCorrect = fileManager.correctResult(ui->spectrumLineEdit->text(), "spectrum",
                                                          ui->spectrumChekLabel, ui->errorSpectrumLabel);
     } else {
         ui->spectrumChekLabel->setPixmap(QPixmap(":/images/NoRequired.png"));
