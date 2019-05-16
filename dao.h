@@ -34,6 +34,7 @@ public:
     void insertDtuFiles(int ratId, QString LF1, QString LF2, QString LF3, QString HF1, QString HF2, QString HF3);
     void insertFile(int ratId, QString filePath, QString type);
     void insertResult(int resId, QString resultDirPath, QString type);
+    void deleteECGRecord(int ratId);
     void closeConnection(QString dbName);
 private:
     QSqlDatabase mainDatabase;

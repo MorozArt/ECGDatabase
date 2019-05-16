@@ -24,6 +24,7 @@ public:
     bool resultDirMove(int id, QString resultDirPath, QString dirPath, QString type);
     bool runCopyTask(QString source, QString dest);
     bool copyDir(QString source, QString dest);
+    bool deleteECGRecord(QString ratNumber, QString ratDesc, int ratId);
 private:
     DAO dao;
 };

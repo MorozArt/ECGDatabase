@@ -483,6 +483,41 @@ QList<QPair<QString, QString> > DAO::getWaveformRef(int channel, int resultId) {
     return list;
 }
 
+void DAO::deleteECGRecord(int ratId) {
+    int resultId{-1}, dtuId{-1};
+    QSqlQuery a_query(mainDatabase);
+
+    QString str = "SELECT result_files_link_id FROM main WHERE rowid = %1";
+    QString str_r = str.arg(ratId);
+    a_query.exec(str_r);
+    if(a_query.first()) {
+        resultId = a_query.value(0).toInt();
+    }
+
+    str = "SELECT dtu_files_link_id FROM main WHERE rowid = %1";
+    str_r = str.arg(ratId);
+    a_query.exec(str_r);
+    if(a_query.first()) {
+        dtuId = a_query.value(0).toInt();
+    }
+
+    if(resultId != -1) {
+        str = "DELETE FROM result WHERE rowid = %1";
+        str_r = str.arg(resultId);
+        a_query.exec(str_r);
+    }
+
+    if(dtuId != -1) {
+        str = "DELETE FROM dtu WHERE rowid = %1";
+        str_r = str.arg(dtuId);
+        a_query.exec(str_r);
+    }
+
+    str = "DELETE FROM main WHERE rowid = %1";
+    str_r = str.arg(ratId);
+    a_query.exec(str_r);
+}
+
 DAO::~DAO() {
     mainDatabase.close();
 }

@@ -282,3 +282,49 @@ bool FileManager::copyDir(QString source, QString dest) {
         }
     }
 }
+
+//Функция удаления папки; Автор: QtCoder
+int removeFolder(QDir & dir) {
+
+    int res = 0;
+    //Получаем список каталогов
+     QStringList lstDirs = dir.entryList(QDir::Dirs |
+                  QDir::AllDirs |
+                  QDir::NoDotAndDotDot);
+    //Получаем список файлов
+     QStringList lstFiles = dir.entryList(QDir::Files);
+
+    //Удаляем файлы
+    foreach (QString entry, lstFiles) {
+        QString entryAbsPath = dir.absolutePath() + "/" + entry;
+        QFile::setPermissions(entryAbsPath, QFile::ReadOwner | QFile::WriteOwner);
+        QFile::remove(entryAbsPath);
+    }
+
+    //Для папок делаем рекурсивный вызов
+     foreach (QString entry, lstDirs) {
+         QString entryAbsPath = dir.absolutePath() + "/" + entry;
+         QDir dr(entryAbsPath);
+         removeFolder(dr);
+     }
+
+    //Удаляем обрабатываемую папку
+    if (!QDir().rmdir(dir.absolutePath())) {
+        res = 1;
+    }
+    return res;
+}
+
+
+bool FileManager::deleteECGRecord(QString ratNumber, QString ratDesc, int ratId) {
+    QDir dir(qApp->applicationDirPath()+"/data/Files/Крыса "+ratNumber+"/"+ratDesc);
+    if(dir.exists()) {
+        if(removeFolder(dir) == 0) {
+            dao.deleteECGRecord(ratId);
+            dir.setPath(qApp->applicationDirPath()+"/data/Files/Крыса "+ratNumber);
+            if(dir.isEmpty()) {
+                removeFolder(dir);
+            }
+        }
+    }
+}

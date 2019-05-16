@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "dao.h"
+#include "filemanager.h"
 
 namespace Ui {
 class open;
@@ -30,10 +31,13 @@ private slots:
 
     //void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
 
+    void on_deletelButton_clicked();
+
 private:
     void closeEvent(QCloseEvent *event);
     Ui::open *ui;
     DAO dao;
+    FileManager fileManager;
     void showInTable(QList<QString> items);
 };
 

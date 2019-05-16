@@ -56,9 +56,39 @@ void Open::showInTable(QList<QString> items) {
     }
 }
 
-void Open::on_canselButton_clicked()
+void Open::on_showButton_clicked()
 {
-    close();
+    showInTable(dao.getOpenRat(ui->spinBox->value(), ui->RIComboBox->currentText()));
+}
+
+void Open::on_showAllButton_clicked()
+{
+    showInTable(dao.getOpenAllRat());
+}
+
+void Open::on_deletelButton_clicked()
+{
+    if(!ui->tableWidget->selectedItems().isEmpty()) {
+        QMessageBox accept(QMessageBox::Question,
+                    "Внимание!",
+                    "Вы действительно хотите удалить эту запись?",
+                    QMessageBox::Yes | QMessageBox::No,
+                    this);
+        accept.setButtonText(QMessageBox::Yes, "Да");
+        accept.setButtonText(QMessageBox::No, "Нет");
+
+        if(accept.exec() == QMessageBox::Yes) {
+            int ratNumber = ui->tableWidget->selectedItems().first()->text().toInt();
+            int RIid = dao.getResearchInstituteFromName(ui->tableWidget->selectedItems().at(1)->text());
+            QString ratDesc = ui->tableWidget->selectedItems().last()->text();
+            int ratId = dao.getRatId(ratNumber, RIid, ratDesc);
+            fileManager.deleteECGRecord(QString::number(ratNumber), ratDesc, ratId);
+
+            showInTable(dao.getOpenRat(ui->spinBox->value(), ui->RIComboBox->currentText()));
+        }
+    } else {
+        MessageBoxCreator::showMessageBoxNoSelectedFiles(this);
+    }
 }
 
 void Open::on_openButton_clicked()
@@ -75,14 +105,9 @@ void Open::on_openButton_clicked()
     }
 }
 
-void Open::on_showAllButton_clicked()
+void Open::on_canselButton_clicked()
 {
-    showInTable(dao.getOpenAllRat());
-}
-
-void Open::on_showButton_clicked()
-{
-    showInTable(dao.getOpenRat(ui->spinBox->value(), ui->RIComboBox->currentText()));
+    close();
 }
 
 //--------------------------Разобраться: AppCrash---------------------------------------

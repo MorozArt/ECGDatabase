@@ -7,7 +7,6 @@ extern QString DATABASE_PATH;
 extern QString IMAGES_FORMAT;
 extern QString ERROR_TITLE;
 extern QString READY_TITLE;
-//extern QString TEMP_FILE;
 extern int scrollValue;
 extern int scrollMouseValue;
 extern int axisXRange;
