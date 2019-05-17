@@ -1,17 +1,21 @@
 #include <QFileDialog>
 #include "settings.h"
+#include "globalvariable.h"
 #include "ui_settings.h"
 #include "referencemanager.h"
+#include "messageboxcreator.h"
 
 Settings::Settings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Settings)
 {
     QSettings settings("database.conf", QSettings::IniFormat);
+    dao.connectionToDatabase(qApp->applicationDirPath()+DATABASE_PATH, "settings");
 
     ui->setupUi(this);
     ui->errorTempFilelabel->setText("");
     ui->tempFileLineEdit->setText(settings.value("TempFilePath", "").toString());
+    setResearchInstitutes();
 }
 
 Settings::~Settings()
@@ -63,4 +67,35 @@ void Settings::on_acceptButton_clicked()
     }
 
     close();
+}
+
+void Settings::on_RIDeleteButton_clicked()
+{
+    if(!ui->RIListWidget->selectedItems().isEmpty()) {
+        int index = ui->RIListWidget->currentRow();
+
+        if(MessageBoxCreator::execQuestionMessageBox(this,
+               "Вы действительно хотите удалить НИИ "+researchInstitutes.at(index).second+"?") == QMessageBox::Yes) {
+            QList<QPair<QString,QString>> records = dao.getAllRecordForResearchInstitute(researchInstitutes.at(index).first);
+            if(records.size() == 0) {
+                dao.deleteResearchInstitute(researchInstitutes.at(index).first);
+                setResearchInstitutes();
+            } else {
+                QString error = "Невозможно удалить данный НИИ, так как присутствуют записи относящиеся к нему:\n";
+                for(int i=0;i<records.size();++i) {
+                    error.append("Крыса "+records.at(i).first+" "
+                                 +records.at(i).second+"\n");
+                }
+                MessageBoxCreator::showMessageBox(this, ERROR_TITLE, error);
+            }
+        }
+    }
+}
+
+void Settings::setResearchInstitutes() {
+    researchInstitutes = dao.getResearchInstitutes();
+    ui->RIListWidget->clear();
+    for(int i=0; i<researchInstitutes.size();++i) {
+        ui->RIListWidget->addItem(researchInstitutes.at(i).second);
+    }
 }

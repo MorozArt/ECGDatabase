@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QSettings>
 #include "filemanager.h"
+#include "dao.h"
 
 namespace Ui {
 class Settings;
@@ -26,8 +27,13 @@ private slots:
 
     void on_resetTempFileButton_clicked();
 
+    void on_RIDeleteButton_clicked();
+
 private:
     void closeEvent(QCloseEvent *event);
+    void setResearchInstitutes();
+    DAO dao;
+    QList<QPair<int, QString> > researchInstitutes;
     Ui::Settings *ui;
     FileManager fileManager;
     bool tempFileCorrect{false};

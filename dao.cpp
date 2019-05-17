@@ -180,6 +180,22 @@ QList<QPair<int, QString> > DAO::getResearchInstitutes() {
     return items;
 }
 
+QList<QPair<QString,QString>> DAO::getAllRecordForResearchInstitute(int RIid) {
+    QList<QPair<QString, QString> > items;
+
+    QSqlQuery a_query(mainDatabase);
+    QString str = "SELECT rat_number, description FROM main WHERE research_institute_id = %1";
+    QString str_r = str.arg(RIid);
+    a_query.exec(str_r);
+    QPair<QString, QString> item;
+    while(a_query.next()) {
+        item.first = a_query.value(0).toString();
+        item.second = a_query.value(1).toString();
+        items.append(item);
+    }
+    return items;
+}
+
 QString DAO::getResearchInstituteFromId(QString id) {
     QSqlQuery a_query(mainDatabase);
     QString str = "SELECT name FROM research_institute WHERE rowid = %1";
@@ -515,6 +531,13 @@ void DAO::deleteECGRecord(int ratId) {
 
     str = "DELETE FROM main WHERE rowid = %1";
     str_r = str.arg(ratId);
+    a_query.exec(str_r);
+}
+
+void DAO::deleteResearchInstitute(int RIid) {
+    QSqlQuery a_query(mainDatabase);
+    QString str = "DELETE FROM research_institute WHERE rowid = %1";
+    QString str_r = str.arg(RIid);
     a_query.exec(str_r);
 }
 

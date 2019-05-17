@@ -69,15 +69,10 @@ void Open::on_showAllButton_clicked()
 void Open::on_deletelButton_clicked()
 {
     if(!ui->tableWidget->selectedItems().isEmpty()) {
-        QMessageBox accept(QMessageBox::Question,
-                    "Внимание!",
-                    "Вы действительно хотите удалить эту запись?",
-                    QMessageBox::Yes | QMessageBox::No,
-                    this);
-        accept.setButtonText(QMessageBox::Yes, "Да");
-        accept.setButtonText(QMessageBox::No, "Нет");
 
-        if(accept.exec() == QMessageBox::Yes) {
+        if(MessageBoxCreator::execQuestionMessageBox(this,
+                          "Вы действительно хотите удалить эту запись?") == QMessageBox::Yes) {
+
             int ratNumber = ui->tableWidget->selectedItems().first()->text().toInt();
             int RIid = dao.getResearchInstituteFromName(ui->tableWidget->selectedItems().at(1)->text());
             QString ratDesc = ui->tableWidget->selectedItems().last()->text();

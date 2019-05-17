@@ -31,3 +31,19 @@ void MessageBoxCreator::showMessageBoxNoSelectedFiles(QWidget *parent) {
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
 }
+
+int MessageBoxCreator::execQuestionMessageBox(QWidget *parent, QString question) {
+    QMessageBox msgBox(parent);
+    msgBox.setWindowTitle("Внимание!");
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setText(question);
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setButtonText(QMessageBox::Yes, "Да");
+    msgBox.setButtonText(QMessageBox::No, "Нет");
+
+    if(msgBox.exec() == QMessageBox::Yes) {
+        return QMessageBox::Yes;
+    } else {
+        return QMessageBox::No;
+    }
+}

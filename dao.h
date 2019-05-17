@@ -21,6 +21,7 @@ public:
     QList<QString> getOpenAllRat();
     QList<QString> getOpenRat(int number, QString RI);
     QList<QPair<int,QString>> getResearchInstitutes();
+    QList<QPair<QString,QString>> getAllRecordForResearchInstitute(int RIid);
     QList<QString> getAllResultType(QString type);
     QList<QString> getResultType(QString type, int ratNumber, QString RI);
     QList<QPair<double, QString> > getTimeMarks(int id);
@@ -35,6 +36,7 @@ public:
     void insertFile(int ratId, QString filePath, QString type);
     void insertResult(int resId, QString resultDirPath, QString type);
     void deleteECGRecord(int ratId);
+    void deleteResearchInstitute(int RIid);
     void closeConnection(QString dbName);
 private:
     QSqlDatabase mainDatabase;
